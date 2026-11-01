@@ -1,0 +1,80 @@
+/* Escolha de sabores: avulso, combos e resumo no carrinho. */
+.product-flavor-hint { display: block; color: var(--lime); font-size: 9px; margin-top: 4px; }
+.product-description { min-height: 44px; }
+.tone-pink { background: #efdee2; }
+.cart-bottle { color: var(--lime); font-size: 10px; font-weight: 700; line-height: 1.6; margin: 5px 0; }
+.cart-flavors { font-size: 9px; color: #c0ceb0; line-height: 1.7; margin: 5px 0; }
+.cart-flavors.pending { color: var(--lime); }
+.edit-flavors { display: block; color: var(--lime); font-size: 9px; border: 0; border-bottom: 1px solid #9abf4a70; background: transparent; padding: 4px 0; margin: 0 0 11px; }
+.edit-flavors:hover { color: var(--text); }
+.cart-flavor-warning { padding: 10px; margin: 0 0 15px; border: 1px solid #60743d; border-radius: 5px; color: var(--lime); font-size: 10px; line-height: 1.7; }
+.checkout-button.is-disabled { opacity: .45; cursor: not-allowed; }
+.checkout-button.is-disabled:hover { transform: none; box-shadow: none; }
+
+.flavor-dialog { width: min(510px,calc(100% - 28px)); max-height: 92dvh; padding: 0; border: 1px solid #53663b; border-radius: 16px; color: var(--text); background: var(--bg); box-shadow: 0 25px 100px #0009; }
+.flavor-dialog::backdrop { background: #000b; backdrop-filter: blur(7px); }
+.flavor-dialog[open] { animation: card-in .2s ease; }
+#flavor-form { display: flex; flex-direction: column; max-height: 92dvh; }
+.flavor-header { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 22px 25px 20px; border-bottom: 1px solid var(--line); flex-shrink: 0; }
+.flavor-header h2 { font-family: var(--font-display); font-size: 34px; line-height: 1.1; margin: 4px 0 0; font-weight: 600; }
+.flavor-header .eyebrow { font-size: 8px; }
+.flavor-header .icon-button { width: 36px; height: 36px; flex-shrink: 0; }
+.flavor-body { overflow-y: auto; overscroll-behavior: contain; padding: 20px 25px; }
+.flavor-product { display: flex; align-items: center; gap: 14px; padding: 13px; background: #1b2316; border: 1px solid var(--line); border-radius: 8px; }
+.flavor-product img { width: 62px; height: 72px; padding: 7px; object-fit: contain; background: #e8ecdf; border-radius: 5px; }
+.flavor-product h3 { font-size: 13px; margin: 0 0 6px; line-height: 1.5; }
+.flavor-product p { font-size: 10px; color: var(--muted); margin: 0 0 7px; line-height: 1.7; }
+.flavor-product strong { font-size: 13px; color: var(--lime); }
+#flavor-instruction { margin: 21px 0 14px; color: #c1ccb5; line-height: 1.8; font-size: 11px; }
+.flavor-options { margin: 0; padding: 0; border: 0; display: flex; flex-direction: column; gap: 8px; min-width: 0; }
+.flavor-choice, .flavor-row { display: flex; align-items: center; gap: 12px; padding: 13px; border: 1px solid var(--line); border-radius: 8px; background: #191f15; transition: border-color .2s, background .2s; position: relative; }
+.flavor-choice { cursor: pointer; min-height: 57px; font-size: 12px; font-weight: 700; }
+.flavor-choice:hover, .flavor-row:hover { border-color: #637b43; }
+.flavor-choice.selected, .flavor-row.selected { border-color: #b3d75d; background: #25331a; }
+.flavor-choice:focus-within { outline: 2px solid var(--lime); outline-offset: 3px; }
+.flavor-choice input { position: absolute; width: 1px; height: 1px; opacity: 0; }
+.flavor-radio-mark { display: grid; place-items: center; width: 21px; height: 21px; margin-left: auto; border: 1px solid #637253; border-radius: 50%; flex-shrink: 0; }
+.flavor-radio-mark .icon { width: 13px; height: 13px; opacity: 0; }
+.flavor-choice.selected .flavor-radio-mark { background: var(--lime); color: var(--dark); border-color: var(--lime); }
+.flavor-choice.selected .flavor-radio-mark .icon { opacity: 1; }
+.flavor-swatch { width: 24px; height: 32px; border-radius: 6px; border: 1px solid #ffffff3d; box-shadow: inset 4px 0 5px #ffffff26, inset -4px 0 6px #0002; flex-shrink: 0; }
+.flavor-original { background: linear-gradient(110deg,#355eae 0 48%,#c3d2dc 49%); }
+.flavor-watermelon { background: #df5260; }.flavor-strawberry-peach { background: linear-gradient(145deg,#ed7791,#efb477); }.flavor-tropical { background: #e6c345; }
+.flavor-row-name { flex: 1; min-width: 0; }
+.flavor-row-name strong { display: block; font-size: 11px; line-height: 1.5; }
+.flavor-row-name > button { color: #b4c897; font-size: 8px; padding: 4px 0 0; border: 0; border-bottom: 1px solid #78964d60; background: transparent; text-align: left; min-height: 25px; }
+.flavor-row-name > button:hover { color: var(--lime); }
+.flavor-row .quantity-control { flex-shrink: 0; gap: 4px; }
+.flavor-row .quantity-control button { width: 32px; height: 34px; }
+.flavor-selection-status { display: flex; align-items: center; justify-content: space-between; gap: 10px; margin-top: 21px; font-size: 10px; font-weight: 700; color: var(--lime); }
+.flavor-selection-status > span:last-child { font-size: 7px; letter-spacing: 1px; color: var(--muted); }
+#flavor-progress { display: block; width: 100%; height: 5px; border: 0; margin-top: 10px; border-radius: 5px; overflow: hidden; background: #34412b; accent-color: var(--lime); }
+#flavor-progress::-webkit-progress-bar { background: #34412b; } #flavor-progress::-webkit-progress-value { background: var(--lime); transition: width .15s; } #flavor-progress::-moz-progress-bar { background: var(--lime); }
+.flavor-footer { border-top: 1px solid var(--line); padding: 18px 25px; background: #192014; flex-shrink: 0; }
+.flavor-footer .button { width: 100%; gap: 12px; font-size: 12px; }
+.flavor-footer .button > strong { margin-left: auto; font-size: 13px; white-space: nowrap; }
+.flavor-footer .button:disabled { opacity: .4; cursor: not-allowed; transform: none; box-shadow: none; }
+.flavor-error { color: #ffba9a; font-size: 10px; line-height: 1.7; }
+/* Garrafa do combo: escolha única com as duas fotos reais. */
+.selection-step-title { margin: 22px 0 12px; font-size: 12px; font-weight: 800; color: var(--text); }
+.bottle-options { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 12px; border: 0; padding: 0; margin: 0; min-width: 0; }
+.bottle-choice { position: relative; display: flex; flex-direction: column; align-items: center; text-align: center; gap: 7px; padding: 12px 10px; border: 1px solid var(--line); border-radius: 9px; background: #1b2316; cursor: pointer; }
+.bottle-choice:hover { border-color: #637b43; }.bottle-choice.selected { border-color: var(--lime); background: #25331a; }
+.bottle-choice:focus-within { outline: 2px solid var(--lime); outline-offset: 3px; }
+.bottle-choice input { position: absolute; opacity: 0; width: 1px; height: 1px; }
+.bottle-photo { width: 100%; height: 120px; padding: 8px; background: #e9e9dd; border-radius: 5px; }
+.bottle-photo img { width: 100%; height: 100%; object-fit: contain; mix-blend-mode: multiply; }
+.bottle-choice > strong { font-size: 11px; line-height: 1.5; }.bottle-choice > small { font-size: 9px; color: var(--muted); }
+.bottle-choice > .flavor-radio-mark { position: absolute; right: 17px; top: 17px; background: #182111; }
+.bottle-choice.selected > .flavor-radio-mark { background: var(--lime); color: var(--dark); border-color: var(--lime); }
+.bottle-choice.selected .flavor-radio-mark .icon { opacity: 1; }
+.bottle-selection-status { font-size: 9px; line-height: 1.8; color: #c0ceac; margin-bottom: 0; }
+#flavor-step-title:not([hidden]) + #flavor-instruction { margin-top: 0; }
+@media (max-width: 640px) {
+  .bottle-options { gap: 9px; }.bottle-choice { padding: 10px 8px; }.bottle-choice > strong { font-size: 10px; }.bottle-photo { height: 105px; }.bottle-choice > .flavor-radio-mark { top: 14px; right: 13px; }
+  .product-flavor-hint { font-size: 8px; }.product-description { min-height: 49px; }
+  .flavor-dialog { border-radius: 12px; }.flavor-header { padding: 17px; }.flavor-header h2 { font-size: 30px; }.flavor-body { padding: 16px 17px; }.flavor-footer { padding: 14px 17px; }
+  .flavor-product { padding: 10px; gap: 11px; }.flavor-product img { width: 55px; height: 62px; }.flavor-product h3 { font-size: 12px; }.flavor-product p { font-size: 9px; }
+  .flavor-choice, .flavor-row { padding: 10px; gap: 9px; }.flavor-row-name strong { font-size: 10px; }.flavor-swatch { width: 21px; height: 28px; }.flavor-row .quantity-control { gap: 1px; }.flavor-row .quantity-control button { width: 28px; height: 34px; }
+  .flavor-footer .button { font-size: 10px; gap: 9px; min-height: 48px; padding-inline: 14px; }.flavor-footer .button > strong { font-size: 12px; }.flavor-footer .button .icon { width: 18px; height: 18px; }
+}
