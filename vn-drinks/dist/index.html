@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="theme-color" content="#10140f">
+  <meta name="description" content="VN Drinks: cervejas, destilados e combos para o seu próximo brinde. Monte seu carrinho e combine seu pedido pelo WhatsApp.">
+  <title>VN Drinks🍻 — Seu rolê começa aqui</title>
+  <link rel="icon" href="assets/brand/favicon-32.png" type="image/png" sizes="32x32">
+  <link rel="icon" href="assets/brand/favicon-64.png" type="image/png" sizes="64x64">
+  <link rel="apple-touch-icon" href="assets/brand/apple-touch-icon.png" sizes="180x180">
+  <meta name="apple-mobile-web-app-title" content="VN Drinks">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css?v=0b5b281fabff">
+  <link rel="stylesheet" href="css/flavors.css?v=0b5b281fabff">
+  <link rel="stylesheet" href="css/brand.css?v=0b5b281fabff">
+  <script type="module" src="js/app.js?v=0b5b281fabff"></script>
+</head>
+<body>
+  <a class="skip-link" href="#catalogo">Pular para o catálogo</a>
+  <!-- Ícones reutilizáveis: nenhuma biblioteca externa necessária. -->
+  <svg class="icon-definitions" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><defs>
+    <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14m-6-6 6 6-6 6"/></symbol>
+    <symbol id="i-up-right" viewBox="0 0 24 24"><path d="M6 18 18 6M6 6h12v12"/></symbol>
+    <symbol id="i-bag" viewBox="0 0 24 24"><path d="M5 7h14l1 14H4L5 7Zm3 0V6a4 4 0 0 1 8 0v1"/></symbol>
+    <symbol id="i-plus" viewBox="0 0 24 24"><path d="M5 12h14M12 5v14"/></symbol>
+    <symbol id="i-minus" viewBox="0 0 24 24"><path d="M5 12h14"/></symbol>
+    <symbol id="i-close" viewBox="0 0 24 24"><path d="m6 6 12 12M6 18 18 6"/></symbol>
+    <symbol id="i-search" viewBox="0 0 24 24"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m16 16 5 5"/></symbol>
+    <symbol id="i-grid" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></symbol>
+    <symbol id="i-box" viewBox="0 0 24 24"><path d="m12 2 9 5v10l-9 5-9-5V7l9-5Zm0 10v10M3 7l9 5 9-5M7 5l10 5"/></symbol>
+    <symbol id="i-beer" viewBox="0 0 24 24"><path d="M4 8h12v13H4zM16 10h4v7h-4M8 11v6m4-6v6M4 8a3 3 0 0 1 0-6 4 4 0 0 1 6 0 4 4 0 0 1 6 3v3"/></symbol>
+    <symbol id="i-bottle" viewBox="0 0 24 24"><path d="M9 2h6v5l3 4v10H6V11l3-4V2Zm0 3h6M6 13h12"/></symbol>
+    <symbol id="i-bolt" viewBox="0 0 24 24"><path d="m13 2-9 12h7l-1 8 10-13h-8l1-7Z"/></symbol>
+    <symbol id="i-snow" viewBox="0 0 24 24"><path d="M12 2v20M3.3 7l17.4 10M3.3 17 20.7 7M8 4l4 3 4-3M8 20l4-3 4 3M3 11l4-2V5m14 8-4 2v4M3 13l4 2v4m14-8-4-2V5"/></symbol>
+    <symbol id="i-check" viewBox="0 0 24 24"><path d="m5 12 4 4L19 6"/></symbol>
+    <symbol id="i-chat" viewBox="0 0 24 24"><path d="M21 11.5a9 9 0 0 1-13.5 7.8L3 21l1.6-4.7A9 9 0 1 1 21 11.5Z"/><path d="M8 7c0 5 4 8 8 8l1-3-3-1-1 1-2-2 1-1-1-3-3 1Z"/></symbol>
+    <symbol id="i-menu" viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h16"/></symbol>
+    <symbol id="i-chevron" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></symbol>
+  </defs></svg>
+
+  <div class="announcement"><span>BOA COMPANHIA. BEBIDA BOA. <strong>O RESTO É HISTÓRIA.</strong></span><span class="announcement-right">PEDIU, COMBINOU, BRINDOU. <svg class="icon"><use href="#i-up-right"/></svg></span></div>
+  <header class="site-header">
+    <div class="header-inner container">
+      <a class="brand" href="#inicio" aria-label="VN Drinks, início">
+        <img src="assets/brand/logo-neon.png" width="64" height="64" alt="Logo VN Drinks Adega" decoding="async">
+        <span>VN <strong>DRINKS</strong><small>ADEGA</small></span>
+      </a>
+      <nav class="main-nav" aria-label="Navegação principal" id="main-nav">
+        <a href="#catalogo" class="active">Nossas bebidas</a><a href="#combos">Combos</a><a href="#como-pedir">Como pedir</a>
+      </nav>
+      <div class="header-actions">
+        <a class="header-contact" href="https://wa.me/5511960123119" target="_blank" rel="noopener noreferrer"><svg class="icon"><use href="#i-chat"/></svg><span>Fale com a VN</span></a>
+        <button class="cart-trigger" data-open-cart aria-label="Abrir carrinho, 0 itens"><svg class="icon"><use href="#i-bag"/></svg><span class="cart-word">Carrinho</span><span class="cart-count" data-cart-count>0</span></button>
+        <button class="icon-button menu-trigger" id="menu-toggle" aria-label="Abrir menu" aria-controls="main-nav" aria-expanded="false"><svg class="icon"><use href="#i-menu"/></svg></button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero" id="inicio" aria-labelledby="hero-title">
+      <div class="hero-grid container">
+        <div class="hero-copy">
+          <span class="eyebrow"><span class="live-dot"></span> A VIBE É SUA. O BRINDE É COM A GENTE.</span>
+          <h1 id="hero-title">O ROLÊ<br>COMEÇA <span class="title-lime">AQUI<span class="title-period">.</span></span></h1>
+          <p>Do primeiro brinde à última resenha.<br>Cervejas, destilados e combos no seu ritmo.</p>
+          <div class="hero-actions"><a class="button button-lime" href="#catalogo">Escolha sua bebida <svg class="icon"><use href="#i-arrow"/></svg></a><a class="hero-secondary" href="#combos">Bora de combo <span>↗</span></a></div>
+          <div class="hero-meta"><span><svg class="icon"><use href="#i-bag"/></svg> Monte seu carrinho</span><span><svg class="icon"><use href="#i-chat"/></svg> Peça pelo WhatsApp</span></div>
+        </div>
+        <div class="hero-scene" aria-label="Garrafas geladas com limão e gelo em uma composição tropical">
+          <span class="scene-word" aria-hidden="true">GELADA.</span>
+          <div class="orbit orbit-one" aria-hidden="true"></div><div class="orbit orbit-two" aria-hidden="true"></div>
+          <div class="hero-glow" aria-hidden="true"></div>
+          <img class="hero-bottles" src="assets/images/hero-drinks.png" alt="Garrafas com gotas de água, cubos de gelo e limão" width="1024" height="1024" fetchpriority="high">
+          <div class="floating-tag tag-cold"><svg class="icon"><use href="#i-snow"/></svg><span>NO PONTO<br><strong>DO SEU ROLÊ.</strong></span></div>
+          <div class="floating-tag tag-vibe"><span class="sparkle">✳</span> TROPICAL STATE OF MIND</div>
+          <span class="scene-caption">BEBIDA BOA, ENERGIA LÁ EM CIMA.</span>
+        </div>
+      </div>
+      <div class="hero-bottom container"><span>ESCOLHA. CHAME. BRINDE.</span><a href="#catalogo" aria-label="Descer para o catálogo">EXPLORE O CARDÁPIO <span>↓</span></a><span>18+ · APRECIE COM MODERAÇÃO</span></div>
+    </section>
+
+    <div class="ticker" aria-hidden="true"><div class="ticker-track"><span>CERVEJA TRINCANDO <b>✳</b> COMBOS NA MEDIDA <b>✳</b> SEU ROLÊ, SUA VIBE <b>✳</b> VN DRINKS <b>✳</b> </span><span>CERVEJA TRINCANDO <b>✳</b> COMBOS NA MEDIDA <b>✳</b> SEU ROLÊ, SUA VIBE <b>✳</b> VN DRINKS <b>✳</b> </span></div></div>
+
+    <section class="catalog-section section-pad" id="catalogo" aria-labelledby="catalog-title">
+      <div class="container">
+        <div class="section-heading"><div><span class="eyebrow muted">01 / ESCOLHA SEU PRÓXIMO BRINDE</span><h2 id="catalog-title">Qual é a sua <em>vibe?</em></h2></div><p>De boa em casa ou com a galera.<br>Tem uma escolha para cada momento.</p></div>
+        <div class="catalog-tools"><div class="category-tabs" id="categories" role="group" aria-label="Filtrar por categoria"></div><label class="search-field"><svg class="icon"><use href="#i-search"/></svg><span class="sr-only">Buscar bebida</span><input type="search" id="product-search" placeholder="Busque sua bebida" autocomplete="off"></label></div>
+        <div class="catalog-info"><p id="results-count" aria-live="polite"></p><label class="sort-label">Ordenar por <select id="product-sort" aria-label="Ordenar produtos"><option value="default">Destaques</option><option value="price-asc">Menor preço</option><option value="price-desc">Maior preço</option><option value="name">Nome A–Z</option></select></label></div>
+        <p class="demo-notice" id="demo-notice"><span>CATÁLOGO DE EXEMPLO</span> Produtos e preços de demonstração. Confirme os valores e a disponibilidade pelo WhatsApp.</p>
+        <div class="product-grid" id="product-grid"></div>
+        <div class="empty-results" id="empty-results" hidden><svg class="icon"><use href="#i-search"/></svg><h3>Essa bebida ainda não apareceu.</h3><p>Tente outro nome ou explore todas as categorias.</p><button class="button button-outline" id="reset-search">Ver todas as bebidas</button></div>
+      </div>
+    </section>
+
+    <section class="combo-section container" id="combos" aria-labelledby="combo-title">
+      <div class="combo-banner"><div class="combo-copy"><span class="eyebrow">O MATCH PERFEITO PRO SEU ROLÊ</span><h2 id="combo-title">JUNTA A GALERA.<br>O COMBO É <span>NOSSO.</span></h2><p>As combinações que deixam a resenha completa.<br>Escolha o seu e comece a boa.</p><a href="#catalogo" class="button button-dark" id="see-combos">Explorar os combos <svg class="icon"><use href="#i-up-right"/></svg></a></div><div class="combo-visual" aria-hidden="true"><span class="combo-ring"></span><span class="combo-spark">✳</span><img class="combo-gin" src="assets/images/tanqueray.png" alt="" width="400" height="400" loading="lazy"><img class="combo-can" src="assets/images/red-bull.jpg" alt="" width="300" height="300" loading="lazy"><div class="combo-stamp">BOA VIBE<br><strong>EM COMBO</strong><svg class="icon"><use href="#i-check"/></svg></div></div></div>
+    </section>
+
+    <section class="how-section section-pad container" id="como-pedir" aria-labelledby="how-title">
+      <div class="section-heading"><div><span class="eyebrow muted">02 / SEM COMPLICAÇÃO</span><h2 id="how-title">Seu brinde a <em>3 passos.</em></h2></div><a class="text-link" href="https://wa.me/5511960123119" target="_blank" rel="noopener noreferrer">Precisa de uma mão? <svg class="icon"><use href="#i-up-right"/></svg></a></div>
+      <div class="steps"><article><span class="step-number">01</span><svg class="icon"><use href="#i-bottle"/></svg><h3>Encontre sua vibe</h3><p>Explore as bebidas e os combos.<br>Escolha o que combina com seu momento.</p></article><article><span class="step-number">02</span><svg class="icon"><use href="#i-bag"/></svg><h3>Monte seu carrinho</h3><p>Adicione seus favoritos e ajuste<br>as quantidades do seu jeito.</p></article><article><span class="step-number">03</span><svg class="icon"><use href="#i-chat"/></svg><h3>Chama no Whats</h3><p>Envie seu pedido e combine disponibilidade,<br>pagamento e recebimento com a VN.</p></article></div>
+    </section>
+    <section class="contact-band"><div class="container"><div><span class="eyebrow">A RESENHA COMEÇA NA CONVERSA</span><h2>Bora brindar?</h2></div><a class="button button-lime" href="https://wa.me/5511960123119?text=Ol%C3%A1%2C%20VN%20Drinks!%20Quero%20saber%20mais%20sobre%20as%20bebidas.%20%F0%9F%8D%BB" target="_blank" rel="noopener noreferrer"><svg class="icon"><use href="#i-chat"/></svg> Fale com a VN <svg class="icon"><use href="#i-up-right"/></svg></a></div></section>
+  </main>
+
+  <footer class="site-footer container"><div class="footer-main"><a class="brand" href="#inicio"><img src="assets/brand/logo-neon.png" width="64" height="64" alt="Logo VN Drinks Adega" loading="lazy" decoding="async"><span>VN <strong>DRINKS</strong><small>ADEGA</small></span></a><p>Bebida boa. Gente boa. Momentos que ficam.</p><a href="https://wa.me/5511960123119" target="_blank" rel="noopener noreferrer">(11) 96012-3119 <svg class="icon"><use href="#i-up-right"/></svg></a></div><div class="footer-bottom"><span>© <span id="current-year">2026</span> VN Drinks. Feito para bons momentos.</span><span>Venda de bebidas alcoólicas apenas para maiores de 18 anos. Beba com moderação.</span></div></footer>
+
+  <!-- Carrinho acessível: dialog mantém o foco dentro e permite fechar com Escape. -->
+  <dialog class="cart-dialog" id="cart-dialog" aria-labelledby="cart-title">
+    <div class="cart-panel"><div class="cart-header"><div><span class="eyebrow muted">FALTA POUCO PRO BRINDE</span><h2 id="cart-title">Seu carrinho <span data-cart-count>0</span></h2></div><button class="icon-button" id="close-cart" aria-label="Fechar carrinho"><svg class="icon"><use href="#i-close"/></svg></button></div>
+      <div class="cart-body"><div class="cart-empty" id="cart-empty"><svg class="icon"><use href="#i-bag"/></svg><h3>O próximo brinde espera por você.</h3><p>Adicione suas bebidas favoritas para começar.</p><button class="button button-lime" id="continue-shopping">Explorar bebidas <svg class="icon"><use href="#i-arrow"/></svg></button></div><div id="cart-content" hidden><div id="cart-items"></div><form id="order-form" class="order-form"><h3>Como vai ser o rolê?</h3><label>Seu nome <span>(opcional)</span><input name="name" maxlength="80" autocomplete="name" placeholder="Como podemos te chamar?"></label><div class="form-row"><label>Recebimento<select name="fulfillment" id="fulfillment"><option value="pickup">Retirada</option><option value="delivery">Entrega</option></select></label><label>Pagamento<select name="payment"><option>A combinar</option><option>Pix</option><option>Cartão</option><option>Dinheiro</option></select></label></div><label id="address-field" hidden>Endereço para entrega<input name="address" maxlength="240" autocomplete="street-address" placeholder="Rua, número, bairro e complemento"></label><label>Observações <span>(opcional)</span><textarea name="notes" maxlength="500" rows="2" placeholder="Algum detalhe para o seu pedido?"></textarea></label></form></div></div>
+      <div class="cart-summary" id="cart-summary" hidden><p class="cart-flavor-warning" id="cart-flavor-warning" role="status" hidden>Complete as opções dos itens do carrinho para finalizar.</p><div class="subtotal"><span>Subtotal dos produtos</span><strong id="cart-total">R$ 0,00</strong></div><p class="shipping-note" id="shipping-note">Retirada e disponibilidade a combinar pelo WhatsApp.</p><p class="cart-demo" id="cart-demo">Demonstração: confirme os produtos e valores com a VN.</p><a class="button button-lime checkout-button" id="checkout" href="#" target="_blank" rel="noopener noreferrer"><svg class="icon"><use href="#i-chat"/></svg> Finalizar pelo WhatsApp <svg class="icon"><use href="#i-up-right"/></svg></a><p class="checkout-note">Você revisa a mensagem e envia no WhatsApp.<br>O pedido é confirmado no atendimento.</p></div>
+    </div>
+  </dialog>
+  <!-- Escolha de sabores compartilhada pelo Red Bull e pelos combos. -->
+  <dialog class="flavor-dialog" id="flavor-dialog" aria-labelledby="flavor-title" aria-describedby="flavor-instruction">
+    <form id="flavor-form">
+      <header class="flavor-header"><div><span class="eyebrow muted">DO SEU JEITO</span><h2 id="flavor-title">Escolha seus sabores.</h2></div><button class="icon-button" type="button" id="close-flavors" aria-label="Fechar seleção de sabores"><svg class="icon"><use href="#i-close"/></svg></button></header>
+      <div class="flavor-body">
+        <div class="flavor-product"><img id="flavor-product-photo" src="assets/images/red-bull.jpg" alt="Red Bull" width="68" height="76"><div><h3 id="flavor-product-name">Red Bull</h3><p id="flavor-product-description">250 ml · Energético</p><strong id="flavor-product-price">R$ 12,99</strong></div></div>
+        <section id="bottle-section" hidden aria-labelledby="bottle-title">
+          <h3 class="selection-step-title" id="bottle-title">1. Escolha sua garrafa</h3>
+          <fieldset id="bottle-options" class="bottle-options" aria-labelledby="bottle-title"></fieldset>
+          <p class="bottle-selection-status" id="bottle-selection-status" role="status">Selecione uma garrafa para completar o combo.</p>
+        </section>
+        <h3 class="selection-step-title" id="flavor-step-title" hidden>2. Escolha seus Red Bulls</h3>
+        <p id="flavor-instruction">Escolha o sabor da sua lata de 250 ml.</p>
+        <fieldset class="flavor-options" id="flavor-options" aria-label="Sabores de Red Bull"></fieldset>
+        <div class="flavor-selection-status"><span id="flavor-counter" role="status" aria-live="polite">0 de 1 lata selecionada</span><span>250 ML POR LATA</span></div>
+        <progress id="flavor-progress" value="0" max="1" aria-label="Latas selecionadas"></progress>
+        <p class="flavor-error" id="flavor-error" role="alert" hidden></p>
+      </div>
+      <footer class="flavor-footer"><button type="submit" id="flavor-submit" class="button button-lime" disabled><span id="flavor-submit-label">Adicionar ao carrinho</span><strong id="flavor-submit-price">R$ 12,99</strong><svg class="icon"><use href="#i-bag"/></svg></button></footer>
+    </form>
+  </dialog>
+  <div class="toast" id="toast" role="status" aria-live="polite"><span class="toast-check"><svg class="icon"><use href="#i-check"/></svg></span><span id="toast-text">Adicionado ao carrinho</span><button data-open-cart>Ver carrinho <span>↗</span></button></div>
+  <button class="mobile-cart" id="mobile-cart" data-open-cart hidden><span><svg class="icon"><use href="#i-bag"/></svg> Ver carrinho <b data-cart-count>0</b></span><strong id="mobile-total">R$ 0,00</strong><svg class="icon"><use href="#i-arrow"/></svg></button>
+  <noscript><div class="noscript-notice">Ative o JavaScript para usar o carrinho ou <a href="https://wa.me/5511960123119">faça seu pedido pelo WhatsApp</a>.</div></noscript>
+</body>
+</html>
+

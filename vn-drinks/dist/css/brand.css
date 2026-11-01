@@ -1,0 +1,44 @@
+/* Nova identidade visual e ajustes de uso em celulares. */
+.brand { gap: 12px; }
+.brand img { width: 64px; height: 64px; flex-shrink: 0; object-fit: contain; border-radius: 10px; }
+.brand > span { white-space: nowrap; }
+.brand small { font-size: 8px; letter-spacing: 3px; color: var(--lime); }
+.header-inner { min-height: 100px; }
+.footer-main .brand img { width: 70px; height: 70px; }
+
+@media (max-width: 900px) and (min-width: 641px) {
+  .brand { gap: 9px; }
+  .brand img { width: 55px; height: 55px; }
+}
+
+@media (max-width: 640px) {
+  html { scroll-padding-top: 96px; }
+  .header-inner { min-height: 84px; gap: 8px; }
+  .brand { gap: 8px; }
+  .brand img { width: 54px; height: 54px; border-radius: 8px; }
+  .brand > span { font-size: 17px; }
+  .brand small { font-size: 7px; letter-spacing: 2.5px; margin-top: 6px; }
+  .header-actions { gap: 6px; }
+  .main-nav { top: 84px; }
+  .main-nav a, .cart-trigger, .menu-trigger { min-height: 44px; }
+  .menu-trigger, .icon-button { width: 44px; height: 44px; }
+  .cart-trigger { padding-inline: 9px; }
+  .category-tab, .add-button { min-height: 44px; }
+  .add-button { font-size: 11px; }
+  .search-field input { font-size: 16px; min-height: 46px; }
+  .order-form input, .order-form select, .order-form textarea { font-size: 16px; min-height: 44px; }
+  .order-form textarea { min-height: 84px; }
+  .quantity-control button, .flavor-row .quantity-control button { width: 44px; height: 44px; }
+  .flavor-row .quantity-control { gap: 1px; }
+  .flavor-row-name > button { min-height: 44px; padding-top: 5px; }
+  .flavor-footer .button, .checkout-button { min-height: 50px; }
+  .footer-main { flex-wrap: wrap; row-gap: 20px; }
+  .footer-main .brand img { width: 60px; height: 60px; }
+  .footer-main .brand > span { font-size: 17px; }
+}
+
+@media (max-width: 359px) {
+  .brand img { width: 48px; height: 48px; }
+  .brand > span { font-size: 16px; }
+  .brand small { font-size: 6px; }
+}

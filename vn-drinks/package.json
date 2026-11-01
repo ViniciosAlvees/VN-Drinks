@@ -1,0 +1,13 @@
+{
+  "name": "vn-drinks",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "VN Drinks — catálogo com carrinho e pedidos pelo WhatsApp",
+  "scripts": {
+    "dev": "node scripts/version-assets.mjs && node scripts/serve.mjs",
+    "start": "node scripts/version-assets.mjs && node scripts/serve.mjs",
+    "version-assets": "node scripts/version-assets.mjs",
+    "test": "node scripts/version-assets.mjs && node --test tests/*.test.mjs"
+  }
+}
