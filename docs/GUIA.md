@@ -7,18 +7,18 @@ Site responsivo para catálogo de bebidas, cervejas e combos. O visitante adicio
 É necessário Node.js. Não há dependências para instalar.
 
 ```sh
-cd vn-drinks
 npm run dev
 ```
 
-Abra **http://127.0.0.1:4173**. Use o servidor para carregar os módulos JavaScript; abrir `index.html` diretamente com duplo clique não é suficiente. Para verificar as regras do carrinho, execute `npm test`.
+Execute os comandos na raiz do repositório e abra **http://127.0.0.1:4173**. Use o servidor para carregar os módulos JavaScript; abrir `index.html` diretamente com duplo clique não é suficiente. Para verificar as regras do carrinho, execute `npm test`.
 
 Os comandos de prévia e teste atualizam juntos a versão do JavaScript e do CSS. Isso evita misturar o catálogo novo com um seletor de opções antigo em cache. Se estiver com a página aberta durante uma edição, recarregue com **Ctrl+F5**. Antes de uma publicação manual da pasta `dist`, execute `npm run version-assets`.
 
 ## Organização dos arquivos
 
 ```text
-vn-drinks/
+VN-Drinks/                     Raiz do repositório
+├── .github/workflows/pages.yml Testes e publicação automática no GitHub Pages
 ├── dist/                      Site pronto para hospedagem estática
 │   ├── index.html             Estrutura, textos e seções
 │   ├── css/
@@ -39,7 +39,10 @@ vn-drinks/
 │       └── images/            Fotos dos produtos e abertura
 ├── scripts/serve.mjs           Servidor local
 ├── scripts/version-assets.mjs  Mantém HTML, CSS e módulos na mesma versão
-├── tests/cart.test.mjs         Verificações do carrinho e WhatsApp
+├── tests/                     Verificações do catálogo, carrinho e opções
+├── docs/                      Guia e referências das imagens
+├── exports/                   Logo para download
+├── package.json               Comandos de desenvolvimento e teste
 └── .openai/hosting.json        Identificação da hospedagem Sites
 ```
 
@@ -85,7 +88,7 @@ As garrafas permitidas ficam em `BEEFEATER_BOTTLES`, no arquivo `catalog.js`. Ca
 - Cabeçalho e rodapé usam a versão otimizada `dist/assets/brand/logo-neon.png`, preservando a imagem completa.
 - A aba do navegador usa `favicon-32.png` e `favicon-64.png` na mesma pasta.
 - Os ícones de celular são `apple-touch-icon.png`, `icon-192.png` e `icon-512.png`. O arquivo `dist/manifest.webmanifest` identifica a marca ao salvar o site na tela inicial.
-- Se trocar a arte novamente, atualize as versões acima e execute `npm run version-assets`. Os downloads em `../exports/vn-drinks-logo.png` e `../exports/vn-drinks-logo.svg` também contêm a nova logo; o SVG é um contêiner da imagem original, não um desenho vetorial redesenhado.
+- Se trocar a arte novamente, atualize as versões acima e execute `npm run version-assets`. Os downloads em `exports/vn-drinks-logo.png` e `exports/vn-drinks-logo.svg` também contêm a nova logo; o SVG é um contêiner da imagem original, não um desenho vetorial redesenhado. Os caminhos deste guia são relativos à raiz do projeto.
 
 ## Uso no celular
 
@@ -107,7 +110,11 @@ Fontes: Barlow Condensed e Manrope via Google Fonts, com fontes locais de fallba
 
 ## Publicação
 
-O conteúdo de `dist/` pode ser servido em qualquer hospedagem estática com HTTPS. A publicação pelo Sites começa privada para o proprietário. Para receber clientes, a audiência precisa ser alterada para pública quando você decidir colocar a loja no ar com os produtos e preços reais.
+O endereço da loja no GitHub Pages é **https://viniciosalvees.github.io/VN-Drinks/**. O arquivo `.github/workflows/pages.yml` testa o projeto e publica **somente o conteúdo de `dist/`** a cada atualização na branch `main`. Assim, o endereço principal abre a loja diretamente. Pull requests executam as verificações sem publicar alterações.
+
+Em **Settings → Pages → Build and deployment**, a origem deve ser **GitHub Actions**. Depois do merge, acompanhe o fluxo **Publicar VN Drinks** na aba **Actions**. O fluxo também pode ser iniciado manualmente com **Run workflow** na branch `main`.
+
+O conteúdo de `dist/` também pode ser servido em qualquer hospedagem estática com HTTPS. Na hospedagem Sites, o arquivo `.openai/hosting.json` mantém a identificação do projeto e o diretório `dist`; a audiência dessa hospedagem é gerenciada separadamente.
 
 ## Imagens e referências
 
