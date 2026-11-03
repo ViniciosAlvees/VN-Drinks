@@ -9,11 +9,11 @@ O comando `npm run build` compila os arquivos e gera o catálogo React no HTML i
 1. Abra [Google Search Console](https://search.google.com/search-console/).
 2. Adicione uma propriedade do tipo **Prefixo do URL** com `https://vn-drinks.vercel.app/`.
 3. Escolha **Tag HTML** e copie a tag `google-site-verification` fornecida para sua conta.
-4. Cole a tag inteira dentro de `<head>` no `index.html` da raiz, no local indicado pelo comentário. Não coloque no componente React nem no HTML gerado em `dist/`.
+4. A tag fornecida pelo proprietário já está dentro de `<head>` no `index.html` da raiz. Se precisar adicionar outra verificação, mantenha a existente e insira a nova tag nesse mesmo arquivo. Não coloque no componente React nem no HTML gerado em `dist/`.
 5. Envie a alteração para a branch usada no deploy de produção da Vercel e aguarde o deploy ficar pronto.
 6. Confira a presença da tag no código-fonte público da loja e clique em **Verificar** no Search Console. Mantenha a tag após verificar.
 
-A tag exclusiva ainda precisa ser fornecida pelo proprietário. Nenhuma tag fictícia foi incluída no projeto.
+A tag exclusiva fornecida pelo proprietário foi incluída no projeto. Isso prepara a confirmação; a conclusão depende de publicar a tag no domínio e clicar em **Verificar** no Search Console. Não remova a tag após verificar.
 
 ## Enviar o sitemap e pedir indexação
 

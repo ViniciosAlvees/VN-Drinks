@@ -46,4 +46,4 @@ O modo de demonstração existente foi preservado em `STORE.demoMode`. Revise os
 
 Veja [o guia de edição](docs/GUIA.md) e [as informações sobre imagens](docs/ASSETS.md).
 
-Para verificar a propriedade no Google, enviar o sitemap e pedir indexação, consulte [SEO e Search Console](docs/SEO.md). A tag exclusiva de verificação precisa ser fornecida pelo proprietário.
+Para verificar a propriedade no Google, enviar o sitemap e pedir indexação, consulte [SEO e Search Console](docs/SEO.md). A tag exclusiva fornecida pelo proprietário já está no `index.html`; mantenha-a após concluir a verificação.
