@@ -16,9 +16,10 @@ Abra http://127.0.0.1:4173. Comandos disponíveis:
 - `npm run dev`: servidor local com atualização automática.
 - `npm run lint`: análise estática com ESLint e regras de Hooks.
 - `npm test`: testes das regras de catálogo, carrinho, sabores e preços.
-- `npm run build`: gera o site de produção em `dist/` com arquivos versionados pelo Vite.
+- `npm run build`: gera o site de produção em `dist/`, com arquivos versionados e catálogo no HTML inicial.
 - `npm run preview`: serve o último build localmente.
-- `npm run check`: executa lint, testes e build.
+- `npm run test:build`: verifica SEO e recursos do último build.
+- `npm run check`: executa lint, testes, build e verificação do HTML publicado.
 
 ## Organização
 
@@ -44,3 +45,5 @@ O GitHub Pages continua disponível pela configuração `.github/workflows/pages
 O modo de demonstração existente foi preservado em `STORE.demoMode`. Revise os demais preços e a disponibilidade antes de alterá-lo.
 
 Veja [o guia de edição](docs/GUIA.md) e [as informações sobre imagens](docs/ASSETS.md).
+
+Para verificar a propriedade no Google, enviar o sitemap e pedir indexação, consulte [SEO e Search Console](docs/SEO.md). A tag exclusiva de verificação precisa ser fornecida pelo proprietário.
