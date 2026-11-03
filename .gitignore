@@ -1,4 +1,8 @@
 node_modules/
+dist/
+.npm-cache/
+.vercel/
+.vercel-auth/
 .sites-runtime/
 .sites-checkout/
 *.tar.gz
@@ -6,3 +10,5 @@ node_modules/
 .env
 .env.*
 !.env.example
+
+.vercel

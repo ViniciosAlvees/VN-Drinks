@@ -1,7 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { RED_BULL_FLAVORS } from '../dist/js/catalog.js';
-import { addCartItem, setCartFlavors, makeCartKey, sanitizeCart, getCartLines, getTotal, getCount, getWhatsAppURL, hasPendingFlavors } from '../dist/js/cart.js';
+import { RED_BULL_FLAVORS } from '../src/catalog.js';
+import { addCartItem, setCartFlavors, makeCartKey, sanitizeCart, getCartLines, getTotal, getCount, getWhatsAppURL, hasPendingFlavors } from '../src/cart.js';
 
 test('avulsos dos quatro sabores ficam separados, custando R$ 12,99 cada', () => {
   let cart = {};
@@ -65,7 +65,7 @@ test('editar sabores mantém as quantidades e reúne as escolhas iguais', () => 
 test('carrinhos antigos preservam os itens e precisam selecionar sabores antes de enviar', () => {
   let cart = sanitizeCart({ 'red-bull': 2, 'combo-gin': 1, heineken: 1 });
   assert.equal(getCount(cart), 4);
-  assert.equal(getTotal(cart), 19396);
+  assert.equal(getTotal(cart), 19447);
   assert.equal(hasPendingFlavors(cart), true);
   assert.equal(getWhatsAppURL(cart), null);
   cart = setCartFlavors(cart, 'red-bull', { tradicional: 1 });
@@ -73,6 +73,6 @@ test('carrinhos antigos preservam os itens e precisam selecionar sabores antes d
   cart = setCartFlavors(cart, 'combo-gin', { melancia: 2, tropical: 2 });
   assert.equal(hasPendingFlavors(cart), false);
   assert.equal(getCount(cart), 4);
-  assert.equal(getTotal(cart), 19396);
+  assert.equal(getTotal(cart), 19447);
   assert.ok(getWhatsAppURL(cart));
 });

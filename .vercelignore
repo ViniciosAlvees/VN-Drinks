@@ -1,0 +1,8 @@
+.git
+.npm-cache
+.vercel-auth
+node_modules
+exports
+docs
+tests
+dist

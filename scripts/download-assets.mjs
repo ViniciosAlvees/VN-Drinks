@@ -24,7 +24,7 @@ const results = await Promise.allSettled(selected.map(async ([name,url]) => {
   const contentType = response.headers.get('content-type') || '';
   if (!contentType.startsWith('image/')) throw new Error(`${name}: resposta não é imagem`);
   const data = Buffer.from(await response.arrayBuffer());
-  await writeFile(new URL(`../dist/assets/images/${name}`, import.meta.url), data);
+  await writeFile(new URL(`../public/assets/images/${name}`, import.meta.url), data);
   console.log(`${name}: ${data.length} bytes`);
 }));
 for (const result of results) if (result.status === 'rejected') { console.error(result.reason.message); process.exitCode = 1; }

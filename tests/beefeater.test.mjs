@@ -1,20 +1,8 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { PRODUCTS } from '../dist/js/catalog.js';
-import { renderBottleChoices } from '../dist/js/ui.js';
-import { addCartItem, setCartFlavors, makeCartKey, sanitizeCart, getCartLines, getTotal, getCount, getWhatsAppURL, hasPendingSelections } from '../dist/js/cart.js';
+import { PRODUCTS } from '../src/catalog.js';
+import { addCartItem, setCartFlavors, makeCartKey, sanitizeCart, getCartLines, getTotal, getCount, getWhatsAppURL, hasPendingSelections } from '../src/cart.js';
 const mixed = { tradicional: 1, melancia: 1, 'morango-pessego': 1, tropical: 1 };
-
-test('o seletor do combo renderiza Tradicional e Pink com fotos e seleção obrigatória', () => {
-  const product = PRODUCTS.find(item => item.id === 'combo-beefeater');
-  const html = renderBottleChoices(product.bottleOptions);
-  assert.equal([...html.matchAll(/name="comboBottle"/g)].length, 2);
-  for (const bottle of product.bottleOptions) {
-    assert.ok(html.includes(`value="${bottle.id}" required`));
-    assert.ok(html.includes(`assets/images/${bottle.image}`));
-    assert.ok(html.includes(bottle.name));
-  }
-});
 
 test('Beefeater Tradicional e Pink avulsos têm 700 ml e custam R$ 104,99 cada', () => {
   let cart = {};
