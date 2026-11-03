@@ -25,9 +25,11 @@ jobs:
         uses: actions/setup-node@v7
         with:
           node-version: '24'
-          package-manager-cache: false
-      - name: Atualizar versões dos arquivos e executar testes
-        run: npm test
+          cache: npm
+      - name: Instalar dependências
+        run: npm ci
+      - name: Revisar código, executar testes e compilar
+        run: npm run check
       - name: Preparar o conteúdo público
         uses: actions/upload-pages-artifact@v3
         with:

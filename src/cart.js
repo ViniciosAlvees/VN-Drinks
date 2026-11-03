@@ -1,5 +1,5 @@
 /** Regras do carrinho, sem dependência da interface. Valores sempre em centavos. */
-import { PRODUCTS, STORE, RED_BULL_FLAVORS } from './catalog.js?v=0b5b281fabff';
+import { PRODUCTS, STORE, RED_BULL_FLAVORS } from './catalog.js';
 export const CART_KEY = 'vn-drinks:cart:v1';
 export const MAX_QUANTITY = 99;
 const productsById = new Map(PRODUCTS.map(product => [product.id, product]));

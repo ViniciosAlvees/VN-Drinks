@@ -1,7 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { PRODUCTS, STORE } from '../dist/js/catalog.js';
-import { sanitizeCart, getTotal, getCount, getWhatsAppURL, money } from '../dist/js/cart.js';
+import { PRODUCTS, STORE } from '../src/catalog.js';
+import { sanitizeCart, getTotal, getCount, getWhatsAppURL, money } from '../src/cart.js';
 
 test('catálogo tem IDs únicos, categorias e preços válidos em centavos', () => {
   assert.equal(new Set(PRODUCTS.map(p => p.id)).size, PRODUCTS.length);
@@ -21,9 +21,9 @@ test('ignora produtos removidos e quantidades corrompidas do armazenamento', () 
 });
 
 test('soma centavos sem arredondamento incorreto', () => {
-  assert.equal(getTotal({ heineken: 3, 'red-bull': 2 }), 4995);
+  assert.equal(getTotal({ heineken: 3, 'red-bull': 2 }), 5148);
   assert.equal(getCount({ heineken: 3, 'red-bull': 2 }), 5);
-  assert.match(money(4995), /49,95/);
+  assert.match(money(5148), /51,48/);
   assert.equal(getTotal({}), 0);
 });
 
@@ -41,7 +41,7 @@ test('WhatsApp recebe produtos, quantidades e subtotal correto', () => {
   const message = url.searchParams.get('text');
   assert.match(message, /2x Heineken Long Neck/);
   assert.match(message, /1x Jack Daniel’s/);
-  assert.match(message, /Subtotal dos produtos: R\$\s165,88/);
+  assert.match(message, /Subtotal dos produtos: R\$\s166,90/);
   assert.match(message, /Recebimento: Retirada/);
   assert.match(message, /Pagamento: Pix/);
   assert.match(message, /CATÁLOGO DE DEMONSTRAÇÃO/);

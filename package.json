@@ -1,13 +1,38 @@
 {
   "name": "vn-drinks",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "private": true,
   "type": "module",
   "description": "VN Drinks — catálogo com carrinho e pedidos pelo WhatsApp",
   "scripts": {
-    "dev": "node scripts/version-assets.mjs && node scripts/serve.mjs",
-    "start": "node scripts/version-assets.mjs && node scripts/serve.mjs",
-    "version-assets": "node scripts/version-assets.mjs",
-    "test": "node scripts/version-assets.mjs && node --test tests/*.test.mjs"
+    "dev": "vite --host 127.0.0.1 --port 4173",
+    "start": "npm run dev",
+    "build": "vite build",
+    "preview": "vite preview --host 127.0.0.1 --port 4173",
+    "lint": "eslint .",
+    "test": "node --test tests/*.test.mjs",
+    "check": "npm run lint && npm test && npm run build"
+  },
+  "engines": {
+    "node": ">=22.12.0",
+    "npm": ">=10"
+  },
+  "dependencies": {
+    "react": "^19.3.1",
+    "react-dom": "^19.3.1"
+  },
+  "devDependencies": {
+    "@eslint/js": "^10.0.1",
+    "@tailwindcss/vite": "^4.3.4",
+    "@vitejs/plugin-react": "^6.2.1",
+    "eslint": "^10.14.0",
+    "eslint-plugin-react-hooks": "^7.1.1",
+    "eslint-plugin-react-refresh": "^0.5.7",
+    "globals": "^17.14.0",
+    "tailwindcss": "^4.3.4",
+    "vite": "^8.3.5"
+  },
+  "overrides": {
+    "minimatch": "^11.0.1"
   }
 }

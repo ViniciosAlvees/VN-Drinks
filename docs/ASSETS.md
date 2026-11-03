@@ -1,6 +1,6 @@
 # Arte de abertura
 
-Ferramenta: image_gen integrada (sem CLI). Arquivo final: `dist/assets/images/hero-drinks.png`.
+Ferramenta: image_gen integrada (sem CLI). Arquivo final: `public/assets/images/hero-drinks.png`.
 
 Prompt completo:
 

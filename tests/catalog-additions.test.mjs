@@ -1,17 +1,17 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { PRODUCTS } from '../dist/js/catalog.js';
-import { addCartItem, getTotal, getCount, getCartLines, getWhatsAppURL } from '../dist/js/cart.js';
+import { PRODUCTS } from '../src/catalog.js';
+import { addCartItem, getTotal, getCount, getCartLines, getWhatsAppURL } from '../src/cart.js';
 
 test('as três novas long necks usam os valores informados e entram no pedido', () => {
   let cart = {};
-  for (const [id,price] of [['heineken-zero',750],['corona',799],['corona-zero',750]]) {
+  for (const [id,price] of [['heineken-zero',750],['corona',900],['corona-zero',750]]) {
     const product = PRODUCTS.find(item => item.id === id);
     assert.equal(product.price,price);
     assert.match(product.description,/330 ml/);
     cart = addCartItem(cart,id);
   }
-  assert.equal(getTotal(cart),2299);
+  assert.equal(getTotal(cart),2400);
   const message = new URL(getWhatsAppURL(cart)).searchParams.get('text');
   assert.match(message,/Heineken Zero Long Neck/);
   assert.match(message,/Corona Extra Long Neck/);

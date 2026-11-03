@@ -1,0 +1,13 @@
+@layer theme, base, components, utilities;
+@import 'tailwindcss/theme.css' layer(theme);
+@import 'tailwindcss/utilities.css' layer(utilities);
+@import './styles.css';
+@import './flavors.css';
+@import './brand.css';
+
+/* O reset existente preserva a identidade visual; utilitários Tailwind ficam disponíveis. */
+@theme {
+  --color-lime: #c9f64a;
+  --color-night: #10140f;
+  --font-sans: 'Manrope', Arial, sans-serif;
+}
