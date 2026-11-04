@@ -53,6 +53,13 @@ function readCartKey(key) {
     flavors[pair[0]] = Number(pair[1]);
   }
   const normalized = normalizeFlavors(product, flavors);
+  // Combos salvos antes da mudança tinham quatro latas. Mantém o item no carrinho
+  // e solicita uma nova escolha de cinco sabores antes de finalizar o pedido.
+  if (!normalized && product.category === 'combos' && product.redBullUnits === 5 &&
+      Object.values(flavors).every(quantity => Number.isInteger(quantity) && quantity >= 0 && quantity <= 4) &&
+      Object.values(flavors).reduce((sum, quantity) => sum + quantity, 0) === 4) {
+    return { key, product, flavors: null, bottle: bottle || null, needsFlavors: true, needsBottle: !!product.bottleOptions?.length && !bottle };
+  }
   return normalized ? { key: makeCartKey(product.id, normalized, bottle?.id), product, flavors: normalized, bottle: bottle || null, needsFlavors: false, needsBottle: false } : null;
 }
 
@@ -122,6 +129,7 @@ export function getWhatsAppURL(cart, details = {}) {
       `${quantity}x ${product.name} (${money(product.price)} cada) — ${money(subtotal)}`,
       ...(bottle ? [`  Garrafa por combo: ${bottle.name} · ${bottle.volume}`] : []),
       ...(flavors ? [`  Red Bull ${product.redBullUnits > 1 ? 'por combo' : 'selecionado'}: ${getFlavorSummary(flavors)}`] : []),
+      ...(product.iceUnits ? [`  Gelos por combo: ${product.iceUnits}`] : []),
     ]),
     '',
     `Subtotal dos produtos: ${money(getTotal(cart))}`,
