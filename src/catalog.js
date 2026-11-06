@@ -67,7 +67,7 @@ export const PRODUCTS = [
   { id: 'rocks', name: 'Gin Rock’s Tradicional', category: 'destilados', description: '1 litro · Gin', price: 3599, images: ['rocks.png'], badge: 'GIN', tone: 'blue', featured: false },
   { id: 'combo-rocks', name: 'Combo Rock’s', category: 'combos', description: '1 Gin Rock’s 1 L + 5 Red Bull 250 ml + 5 gelos', redBullUnits: 5, iceUnits: 5, price: 8799, images: ['rocks.png', 'red-bull.jpg'], badge: 'COMBO', tone: 'blue', featured: false },
   { id: 'eternity', name: 'Gin Eternity Tradicional', category: 'destilados', description: '900 ml · Gin', price: 2499, images: ['eternity.png'], badge: 'GIN', tone: 'mint', featured: false },
-  { id: 'combo-eternity', name: 'Combo Eternity com Baly', category: 'combos', description: '1 Gin Eternity 900 ml + 1 garrafa de Baly à escolha + 5 gelos', balyUnits: 1, iceUnits: 5, price: 5999, images: ['eternity.png'], badge: 'COMBO', tone: 'mint', featured: false },
+  { id: 'combo-eternity', name: 'Combo Eternity com Baly', category: 'combos', description: '1 Gin Eternity 900 ml + 1 garrafa de Baly à escolha + 5 gelos', balyUnits: 1, iceUnits: 5, price: 5999, images: ['eternity.png', 'baly-morango-pessego.png'], imageLayout: 'bottle-pair', badge: 'COMBO', tone: 'mint', featured: false },
   { id: 'combo-eternity-red-bull', name: 'Combo Eternity com Red Bull', category: 'combos', description: '1 Gin Eternity 900 ml + 5 Red Bull 250 ml + 5 gelos', redBullUnits: 5, iceUnits: 5, price: 6999, images: ['eternity.png', 'red-bull.jpg'], badge: 'COMBO', tone: 'mint', featured: false },
 ];
 

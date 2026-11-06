@@ -1,5 +1,7 @@
 # Arte de abertura
 
+A foto `public/assets/images/baly-morango-pessego.png` mostra a garrafa Baly Morango e Pêssego das Galáxias de 2 L, com o rótulo indicado pelo usuário. Fonte: [Jaú Serve](https://www.jauserve.com.br/on/demandware.store/Sites-JauServe-Site/pt_BR/Product-Show?pid=7898080665010). No combo Eternity com Baly, as duas fotos são posicionadas lado a lado pelo CSS.
+
 Ferramenta: image_gen integrada (sem CLI). Arquivo final: `public/assets/images/hero-drinks.png`.
 
 Prompt completo:

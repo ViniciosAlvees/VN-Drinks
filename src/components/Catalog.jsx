@@ -23,7 +23,7 @@ export default function Catalog({ onAdd, category, setCategory }) {
     <div className="catalog-info"><p aria-live="polite">{products.length} {products.length === 1 ? 'bebida ou combo' : 'bebidas e combos'} para o seu rolê</p><label className="sort-label">Ordenar por <select aria-label="Ordenar produtos" value={sort} onChange={event => setSort(event.target.value)}><option value="default">Destaques</option><option value="price-asc">Menor preço</option><option value="price-desc">Maior preço</option><option value="name">Nome A–Z</option></select></label></div>
     {STORE.demoMode && <p className="demo-notice"><span>CATÁLOGO DE EXEMPLO</span> Produtos e preços de demonstração. Confirme os valores e a disponibilidade pelo WhatsApp.</p>}
     <div className="product-grid">{products.map((product, index) => <article className="product-card" key={product.id} style={{ animationDelay: `${Math.min(index, 7) * 35}ms` }}>
-      <div className={`product-photo tone-${product.tone} ${product.images.length > 1 ? 'multiple' : ''}`}>
+      <div className={`product-photo tone-${product.tone} ${product.images.length > 1 ? 'multiple' : ''} ${product.imageLayout || ''}`}>
         <span className="product-badge">{product.badge}</span>
         {product.images.map((filename, i) => <img key={`${filename}-${i}`} src={`./assets/images/${filename}`} alt={i === 0 ? product.name : ''} width="400" height="400" loading="lazy" />)}
         <span className="photo-caption">IMAGEM ILUSTRATIVA</span>

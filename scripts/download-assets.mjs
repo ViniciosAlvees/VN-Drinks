@@ -15,6 +15,7 @@ const sources = [
   ['white-horse-700ml.jpg', 'https://a-static.mlcdn.com.br/800x560/whisky-8-anos-white-horse-700ml/efacil/4500553/2b70c945c2e797bf3b6b9a60a8ca6b25.jpeg'],
   ['rocks.png', 'https://nossadistribuidorabebidas.com.br/wp-content/uploads/2021/12/gin-rocks-1l.png'],
   ['eternity.png', 'https://fenomenobebidas.com.br/wp-content/uploads/2025/11/15384599624-gin-eternity-london.png'],
+  ['baly-morango-pessego.png', 'https://www.jauserve.com.br/dw/image/v2/BFJL_PRD/on/demandware.static/-/Sites-jauserve-master/default/dw4bfc328b/7898080665010.png?sw=1800'],
 ];
 const filenames = process.argv.slice(2);
 const selected = filenames.length ? sources.filter(([name]) => filenames.includes(name)) : sources;

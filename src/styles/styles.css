@@ -142,6 +142,10 @@ h1 { margin: 25px 0 23px; font-family: var(--font-display); font-size: clamp(80p
 .product-photo.multiple img:nth-of-type(2) { right: 0; height: 60%; width: 60%; bottom: 9%; transform: rotate(10deg); z-index: 1; }
 .product-photo.multiple img:nth-of-type(3) { height: 70%; width: 65%; left: 21%; top: 7%; z-index: 0; transform: rotate(4deg); }
 .product-card:hover .multiple img:nth-of-type(1) { transform: rotate(-12deg) translateY(-5px); }
+.product-photo.bottle-pair img:nth-of-type(1), .product-photo.bottle-pair img:nth-of-type(2) { width: 85%; height: 84%; bottom: 8%; transform: none; }
+.product-photo.bottle-pair img:nth-of-type(1) { left: -10%; }
+.product-photo.bottle-pair img:nth-of-type(2) { right: -10%; }
+.product-card:hover .bottle-pair img { transform: translateY(-5px); }
 .photo-caption { position: absolute; bottom: 11px; right: 13px; font-size: 6px; letter-spacing: 1px; color: #35482e89; }
 .product-info { padding: 16px 0 0; }
 .product-info h3 { font-size: 14px; font-weight: 800; letter-spacing: -.3px; margin: 0 0 7px; line-height: 1.4; }
