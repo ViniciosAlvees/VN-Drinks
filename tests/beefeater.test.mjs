@@ -2,7 +2,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import { PRODUCTS } from '../src/catalog.js';
 import { addCartItem, setCartFlavors, makeCartKey, sanitizeCart, getCartLines, getTotal, getCount, getWhatsAppURL, hasPendingSelections } from '../src/cart.js';
-const mixed = { tradicional: 1, melancia: 1, 'morango-pessego': 1, tropical: 1 };
+const mixed = { tradicional: 2, melancia: 1, 'morango-pessego': 1, tropical: 1 };
 
 test('Beefeater Tradicional e Pink avulsos têm 700 ml e custam R$ 104,99 cada', () => {
   let cart = {};
@@ -17,7 +17,7 @@ test('Beefeater Tradicional e Pink avulsos têm 700 ml e custam R$ 104,99 cada',
   assert.ok(getWhatsAppURL(cart));
 });
 
-test('o combo permite as duas garrafas e quatro sabores pelo mesmo preço de R$ 159,99', () => {
+test('o combo permite as duas garrafas e cinco latas pelo mesmo preço de R$ 159,99', () => {
   let cart = addCartItem({}, 'combo-beefeater', mixed, 'tradicional');
   cart = addCartItem(cart, 'combo-beefeater', mixed, 'pink');
   const lines = getCartLines(cart);
@@ -28,15 +28,16 @@ test('o combo permite as duas garrafas e quatro sabores pelo mesmo preço de R$ 
   const message = new URL(getWhatsAppURL(cart)).searchParams.get('text');
   assert.match(message, /Garrafa por combo: Beefeater Tradicional · 700 ml/);
   assert.match(message, /Garrafa por combo: Beefeater Pink · 700 ml/);
-  assert.match(message, /Red Bull por combo: 1x Tradicional · 1x Melancia · 1x Morango e Pêssego · 1x Tropical/);
+  assert.match(message, /Red Bull por combo: 2x Tradicional · 1x Melancia · 1x Morango e Pêssego · 1x Tropical/);
+  assert.equal([...message.matchAll(/Gelos por combo: 5/g)].length, 2);
   assert.match(message, /R\$\s159,99 cada/);
 });
 
-test('não permite adicionar o combo sem garrafa válida ou sem as quatro latas', () => {
+test('não permite adicionar o combo sem garrafa válida ou sem as cinco latas', () => {
   assert.throws(() => addCartItem({}, 'combo-beefeater', mixed), /garrafa/);
   assert.throws(() => addCartItem({}, 'combo-beefeater', mixed, 'outra'), /garrafa/);
   assert.throws(() => addCartItem({}, 'combo-beefeater', { tropical: 3 }, 'pink'), /sabores/);
-  assert.throws(() => addCartItem({}, 'combo-beefeater', { tropical: 5 }, 'tradicional'), /sabores/);
+  assert.throws(() => addCartItem({}, 'combo-beefeater', { tropical: 6 }, 'tradicional'), /sabores/);
 });
 
 test('editar garrafa ou Red Bulls mantém quantidades e agrupa apenas escolhas iguais', () => {
@@ -46,16 +47,16 @@ test('editar garrafa ou Red Bulls mantém quantidades e agrupa apenas escolhas i
   cart = setCartFlavors(cart, traditionalKey, mixed, 'pink');
   assert.deepEqual(cart, { [pinkKey]: 3 });
   assert.equal(getTotal(cart), 47997);
-  cart = setCartFlavors(cart, pinkKey, { tropical: 4 }); // Mantém a garrafa quando só os sabores mudam.
+  cart = setCartFlavors(cart, pinkKey, { tropical: 5 }); // Mantém a garrafa quando só os sabores mudam.
   const [line] = getCartLines(cart);
   assert.equal(line.bottle.id, 'pink');
-  assert.deepEqual(line.flavors, { tropical: 4 });
+  assert.deepEqual(line.flavors, { tropical: 5 });
   assert.equal(line.quantity, 3);
   assert.throws(() => setCartFlavors({ [traditionalKey]: 99, [pinkKey]: 1 }, pinkKey, mixed, 'tradicional'), /limite/);
 });
 
 test('a restauração mantém a garrafa escolhida e rejeita opções adulteradas', () => {
-  const key = makeCartKey('combo-beefeater', { melancia: 2, tropical: 2 }, 'pink');
+  const key = makeCartKey('combo-beefeater', { melancia: 3, tropical: 2 }, 'pink');
   const cart = { [key]: 2 };
   assert.deepEqual(sanitizeCart(JSON.parse(JSON.stringify(cart))), cart);
   assert.equal(getCartLines(cart)[0].bottle.image, 'beefeater-pink.png');
@@ -67,7 +68,7 @@ test('um combo ainda sem opções precisa escolher a garrafa e os sabores para e
   assert.equal(getCount(cart), 2);
   assert.equal(hasPendingSelections(cart), true);
   assert.equal(getWhatsAppURL(cart), null);
-  const ready = setCartFlavors(cart, 'combo-beefeater', { tradicional: 4 }, 'tradicional');
+  const ready = setCartFlavors(cart, 'combo-beefeater', { tradicional: 5 }, 'tradicional');
   assert.equal(getCount(ready), 2);
   assert.equal(getTotal(ready), 31998);
   assert.ok(getWhatsAppURL(ready));
