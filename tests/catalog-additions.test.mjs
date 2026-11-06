@@ -23,7 +23,7 @@ test('os quatro novos combos escolhem cinco Red Bulls, incluem cinco gelos e usa
     ['red-label',10199,'combo-red-label',13099],
     ['white-horse',7999,'combo-white-horse',12399],
     ['rocks',3599,'combo-rocks',8799],
-    ['eternity',2499,'combo-eternity',5999],
+    ['eternity',2499,'combo-eternity-red-bull',6999],
   ];
   let cart = {};
   for (const [bottleId,bottlePrice,comboId,comboPrice] of expected) {
@@ -41,11 +41,11 @@ test('os quatro novos combos escolhem cinco Red Bulls, incluem cinco gelos e usa
     cart = addCartItem(cart,bottleId);
     cart = addCartItem(cart,comboId,{ tradicional:3, melancia:2 });
   }
-  assert.equal(getTotal(cart),64592);
+  assert.equal(getTotal(cart),65592);
   assert.equal(getCount(cart),8);
   assert.equal(getCartLines(cart).filter(line => line.flavors).length,4);
   const message = new URL(getWhatsAppURL(cart)).searchParams.get('text');
   assert.equal([...message.matchAll(/Red Bull por combo: 3x Tradicional · 2x Melancia/g)].length,4);
   assert.equal([...message.matchAll(/Gelos por combo: 5/g)].length,4);
-  assert.match(message,/Subtotal dos produtos: R\$\s645,92/);
+  assert.match(message,/Subtotal dos produtos: R\$\s655,92/);
 });

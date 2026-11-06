@@ -1,23 +1,25 @@
 /** Regras do carrinho, sem dependência da interface. Valores sempre em centavos. */
-import { PRODUCTS, STORE, RED_BULL_FLAVORS } from './catalog.js';
+import { PRODUCTS, STORE, getFlavorOptions, getFlavorUnits } from './catalog.js';
 export const CART_KEY = 'vn-drinks:cart:v1';
 export const MAX_QUANTITY = 99;
 const productsById = new Map(PRODUCTS.map(product => [product.id, product]));
-const flavorIds = new Set(RED_BULL_FLAVORS.map(flavor => flavor.id));
 
 /** Exige uma escolha por lata, permitindo misturar os sabores do combo. */
 function normalizeFlavors(product, selection) {
-  if (!product.redBullUnits || !selection || typeof selection !== 'object' || Array.isArray(selection)) return null;
+  const units = getFlavorUnits(product);
+  const options = getFlavorOptions(product);
+  const flavorIds = new Set(options.map(flavor => flavor.id));
+  if (!units || !selection || typeof selection !== 'object' || Array.isArray(selection)) return null;
   if (Object.keys(selection).some(id => !flavorIds.has(id))) return null;
   const result = {};
   let count = 0;
-  for (const flavor of RED_BULL_FLAVORS) {
+  for (const flavor of options) {
     const quantity = selection[flavor.id] ?? 0;
-    if (!Number.isInteger(quantity) || quantity < 0 || quantity > product.redBullUnits) return null;
+    if (!Number.isInteger(quantity) || quantity < 0 || quantity > units) return null;
     if (quantity) result[flavor.id] = quantity;
     count += quantity;
   }
-  return count === product.redBullUnits ? result : null;
+  return count === units ? result : null;
 }
 
 /** A mesma combinação gera a mesma chave, independentemente da ordem escolhida. */
@@ -28,8 +30,9 @@ export function makeCartKey(productId, flavors, bottleId) {
   const bottle = product.bottleOptions?.find(option => option.id === bottleId);
   if (product.bottleOptions?.length && !bottle) throw new Error('Escolha a garrafa do combo.');
   if (!product.bottleOptions?.length && bottleId) throw new Error('Este produto não permite escolher a garrafa.');
-  if (!product.redBullUnits) return product.id;
+  if (!getFlavorUnits(product)) return product.id;
   const normalized = normalizeFlavors(product, flavors);
+  if (!normalized && product.balyUnits) throw new Error('Escolha o sabor da garrafa de Baly.');
   if (!normalized) throw new Error(`Escolha ${product.redBullUnits === 1 ? 'o sabor da lata' : `os sabores das ${product.redBullUnits} latas`} de Red Bull.`);
   const choices = Object.entries(normalized).map(([id,quantity]) => `${id}=${quantity}`).join(',');
   return `${product.id}::${choices}${bottle ? `::${bottle.id}` : ''}`;
@@ -38,12 +41,17 @@ export function makeCartKey(productId, flavors, bottleId) {
 function readCartKey(key) {
   const parts = key.split('::');
   if (parts.length > 3) return null;
+  // As escolhas salvas do antigo combo com Red Bull pertencem à nova versão.
+  if (parts[0] === 'combo-eternity' && parts[1] && [4, 5].includes(parts[1].split(',').reduce((sum, choice) => sum + Number(choice.split('=')[1]), 0))) {
+    return readCartKey(['combo-eternity-red-bull', ...parts.slice(1)].join('::'));
+  }
   const product = productsById.get(parts[0]);
   if (!product) return null;
   if (!Number.isInteger(product.price) || product.price <= 0) return null;
   // Carrinhos antigos ficam visíveis e exigem a escolha de sabores antes do pedido.
-  if (parts.length === 1) return { key: product.id, product, flavors: null, bottle: null, needsFlavors: !!product.redBullUnits, needsBottle: !!product.bottleOptions?.length };
-  if (!product.redBullUnits || !parts[1]) return null;
+  if (parts.length === 1) return { key: product.id, product, flavors: null, bottle: null, needsFlavors: !!getFlavorUnits(product), needsBottle: !!product.bottleOptions?.length };
+  if (!getFlavorUnits(product) || !parts[1]) return null;
+  const flavorIds = new Set(getFlavorOptions(product).map(flavor => flavor.id));
   const bottle = product.bottleOptions?.find(option => option.id === parts[2]);
   if ((product.bottleOptions?.length && !bottle) || (parts.length === 3 && !bottle)) return null;
   const flavors = {};
@@ -90,8 +98,8 @@ export const money = cents => new Intl.NumberFormat(STORE.locale, {
   style: 'currency', currency: STORE.currency,
 }).format(cents / 100);
 
-export function getFlavorSummary(flavors) {
-  return RED_BULL_FLAVORS.filter(flavor => flavors?.[flavor.id] > 0)
+export function getFlavorSummary(flavors, product) {
+  return getFlavorOptions(product).filter(flavor => flavors?.[flavor.id] > 0)
     .map(flavor => `${flavors[flavor.id]}x ${flavor.name}`).join(' · ');
 }
 
@@ -128,7 +136,7 @@ export function getWhatsAppURL(cart, details = {}) {
     ...lines.flatMap(({ product, quantity, subtotal, flavors, bottle }) => [
       `${quantity}x ${product.name} (${money(product.price)} cada) — ${money(subtotal)}`,
       ...(bottle ? [`  Garrafa por combo: ${bottle.name} · ${bottle.volume}`] : []),
-      ...(flavors ? [`  Red Bull ${product.redBullUnits > 1 ? 'por combo' : 'selecionado'}: ${getFlavorSummary(flavors)}`] : []),
+      ...(flavors ? [`  ${product.balyUnits ? 'Baly por combo' : `Red Bull ${product.redBullUnits > 1 ? 'por combo' : 'selecionado'}`}: ${getFlavorSummary(flavors, product)}`] : []),
       ...(product.iceUnits ? [`  Gelos por combo: ${product.iceUnits}`] : []),
     ]),
     '',

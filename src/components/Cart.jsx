@@ -1,6 +1,6 @@
 import { useRef, useState } from 'react';
 import { getCartLines, getCount, getTotal, money, MAX_QUANTITY, getWhatsAppURL, hasPendingSelections, getFlavorSummary, sanitizeCart } from '../cart.js';
-import { STORE } from '../catalog.js';
+import { STORE, getFlavorUnits } from '../catalog.js';
 import Modal from './Modal.jsx';
 import Icon from './Icon.jsx';
 
@@ -25,13 +25,13 @@ export default function Cart({ cart, setCart, onClose, onEdit }) {
             const { key, product, quantity, subtotal, flavors, bottle, needsFlavors, needsBottle } = line;
             const needsSelection = needsFlavors || needsBottle;
             const choices = product.bottleOptions?.length ? 'opções' : 'sabores';
-            const name = [product.name, bottle?.name, getFlavorSummary(flavors)].filter(Boolean).join(', ');
+            const name = [product.name, bottle?.name, getFlavorSummary(flavors, product)].filter(Boolean).join(', ');
             return <article className="cart-item" key={key}>
               <img className="cart-item-photo" src={`./assets/images/${bottle?.image || product.images[0]}`} alt={bottle?.name || product.name} width="74" height="82" />
               <div><h3>{product.name}</h3><p className="cart-item-price">{money(product.price)} por {product.category === 'combos' ? 'combo' : 'item'}</p>
                 {bottle && <p className="cart-bottle">{bottle.name} · {bottle.volume}</p>}
                 {!!product.iceUnits && <p className="cart-bottle">{product.iceUnits} gelos por combo</p>}
-                {!!product.redBullUnits && <><p className={`cart-flavors ${needsSelection ? 'pending' : ''}`}>{needsSelection ? 'Complete as opções para finalizar.' : `${product.redBullUnits > 1 ? 'Red Bull por combo: ' : ''}${getFlavorSummary(flavors)}`}</p><button className="edit-flavors" onClick={() => onEdit(line)} aria-label={`${needsSelection ? 'Escolher' : 'Alterar'} ${choices} de ${name}`}>{needsSelection ? 'Escolher' : 'Alterar'} {choices}</button></>}
+                {!!getFlavorUnits(product) && <><p className={`cart-flavors ${needsSelection ? 'pending' : ''}`}>{needsSelection ? 'Complete as opções para finalizar.' : `${product.balyUnits ? 'Baly por combo: ' : product.redBullUnits > 1 ? 'Red Bull por combo: ' : ''}${getFlavorSummary(flavors, product)}`}</p><button className="edit-flavors" onClick={() => onEdit(line)} aria-label={`${needsSelection ? 'Escolher' : 'Alterar'} ${choices} de ${name}`}>{needsSelection ? 'Escolher' : 'Alterar'} {choices}</button></>}
                 <div className="quantity-control"><button onClick={() => changeQuantity(key, quantity - 1)} aria-label={`Diminuir quantidade de ${name}`}><Icon name="minus" /></button><span aria-label="Quantidade">{quantity}</span><button disabled={quantity >= MAX_QUANTITY} onClick={() => changeQuantity(key, quantity + 1)} aria-label={`Aumentar quantidade de ${name}`}><Icon name="plus" /></button></div>
               </div><div className="cart-item-aside"><strong>{money(subtotal)}</strong><button className="remove-item" onClick={() => changeQuantity(key, 0)} aria-label={`Remover ${name}`}>Remover</button></div>
             </article>;

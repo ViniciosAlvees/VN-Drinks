@@ -4,6 +4,7 @@ import Layout from './components/Layout.jsx';
 import Cart from './components/Cart.jsx';
 import FlavorPicker from './components/FlavorPicker.jsx';
 import Icon from './components/Icon.jsx';
+import { getFlavorUnits } from './catalog.js';
 
 function restoreCart() {
   try { return sanitizeCart(JSON.parse(localStorage.getItem(CART_KEY))); } catch { return {}; }
@@ -36,7 +37,7 @@ export default function App() {
     toastTimer.current = setTimeout(() => setToast(''), 4000);
   }
   function add(product) {
-    if (product.redBullUnits) { setToast(''); setSelection({ product }); return; }
+    if (getFlavorUnits(product)) { setToast(''); setSelection({ product }); return; }
     try { setCart(addCartItem(cart, product.id)); notify('Boa escolha! Adicionado ao carrinho.'); }
     catch (error) { notify(error.message); }
   }

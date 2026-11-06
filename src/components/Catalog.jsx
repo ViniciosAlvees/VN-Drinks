@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { CATEGORIES, PRODUCTS, RED_BULL_FLAVORS, STORE } from '../catalog.js';
+import { CATEGORIES, PRODUCTS, getFlavorOptions, getFlavorUnits, STORE } from '../catalog.js';
 import { money } from '../cart.js';
 import Icon from './Icon.jsx';
 
@@ -9,7 +9,7 @@ export default function Catalog({ onAdd, category, setCategory }) {
   const [query, setQuery] = useState('');
   const [sort, setSort] = useState('default');
   const products = PRODUCTS.filter(product => {
-    const flavors = product.redBullUnits ? RED_BULL_FLAVORS.map(flavor => flavor.name).join(' ') : '';
+    const flavors = getFlavorUnits(product) ? getFlavorOptions(product).map(flavor => flavor.name).join(' ') : '';
     const bottles = (product.bottleOptions || []).map(bottle => bottle.name).join(' ');
     return (category === 'all' || product.category === category || (category === 'sem-alcool' && product.alcoholFree))
       && normalize(`${product.name} ${product.description} ${flavors} ${bottles}`).includes(normalize(query));
@@ -28,8 +28,8 @@ export default function Catalog({ onAdd, category, setCategory }) {
         {product.images.map((filename, i) => <img key={`${filename}-${i}`} src={`./assets/images/${filename}`} alt={i === 0 ? product.name : ''} width="400" height="400" loading="lazy" />)}
         <span className="photo-caption">IMAGEM ILUSTRATIVA</span>
       </div>
-      <div className="product-info"><h3>{product.name}</h3><p className="product-description">{product.description}{!!product.redBullUnits && <span className="product-flavor-hint">{product.bottleOptions?.length ? 'Escolha o gin e os sabores dos Red Bulls' : `${RED_BULL_FLAVORS.length} sabores à sua escolha`}</span>}</p>
-        <div className="product-bottom"><span className="product-price"><small>R$</small>{money(product.price).replace(/^R\$\s*/, '')}</span><button className="add-button" onClick={event => onAdd(product, event.currentTarget)} aria-label={`${product.redBullUnits ? 'Selecionar opções de' : 'Adicionar ao carrinho:'} ${product.name}`} aria-haspopup={product.redBullUnits ? 'dialog' : undefined}><Icon name={product.redBullUnits ? 'chevron' : 'plus'} /><span>{product.redBullUnits ? 'Selecionar' : 'Adicionar'}</span></button></div>
+      <div className="product-info"><h3>{product.name}</h3><p className="product-description">{product.description}{!!getFlavorUnits(product) && <span className="product-flavor-hint">{product.bottleOptions?.length ? 'Escolha o gin e os sabores dos Red Bulls' : `${getFlavorOptions(product).length} sabores${product.balyUnits ? " de Baly" : ""} à sua escolha`}</span>}</p>
+        <div className="product-bottom"><span className="product-price"><small>R$</small>{money(product.price).replace(/^R\$\s*/, '')}</span><button className="add-button" onClick={event => onAdd(product, event.currentTarget)} aria-label={`${getFlavorUnits(product) ? 'Selecionar opções de' : 'Adicionar ao carrinho:'} ${product.name}`} aria-haspopup={getFlavorUnits(product) ? 'dialog' : undefined}><Icon name={getFlavorUnits(product) ? 'chevron' : 'plus'} /><span>{getFlavorUnits(product) ? 'Selecionar' : 'Adicionar'}</span></button></div>
       </div>
     </article>)}</div>
     {!products.length && <div className="empty-results text-center"><Icon name="search" /><h3>Essa bebida ainda não apareceu.</h3><p>Tente outro nome ou explore todas as categorias.</p><button className="button button-outline" onClick={() => { setCategory('all'); setQuery(''); }}>Ver todas as bebidas</button></div>}

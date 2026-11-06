@@ -28,6 +28,16 @@ export const RED_BULL_FLAVORS = [
   { id: 'tropical', name: 'Tropical', tone: 'tropical' },
 ];
 
+export const BALY_FLAVORS = [
+  { id: 'morango-pessego', name: 'Morango e Pêssego', tone: 'strawberry-peach' },
+  { id: 'melancia', name: 'Melancia', tone: 'watermelon' },
+  { id: 'tropical', name: 'Tropical', tone: 'tropical' },
+  { id: 'maca-verde', name: 'Maçã Verde', tone: 'green-apple' },
+];
+
+export const getFlavorOptions = product => product?.balyUnits ? BALY_FLAVORS : RED_BULL_FLAVORS;
+export const getFlavorUnits = product => product?.balyUnits || product?.redBullUnits || 0;
+
 // Opções da garrafa no combo Beefeater. O preço é o mesmo nas duas opções.
 export const BEEFEATER_BOTTLES = [
   { id: 'tradicional', name: 'Beefeater Tradicional', volume: '700 ml', image: 'beefeater-tradicional.png' },
@@ -57,6 +67,7 @@ export const PRODUCTS = [
   { id: 'rocks', name: 'Gin Rock’s Tradicional', category: 'destilados', description: '1 litro · Gin', price: 3599, images: ['rocks.png'], badge: 'GIN', tone: 'blue', featured: false },
   { id: 'combo-rocks', name: 'Combo Rock’s', category: 'combos', description: '1 Gin Rock’s 1 L + 5 Red Bull 250 ml + 5 gelos', redBullUnits: 5, iceUnits: 5, price: 8799, images: ['rocks.png', 'red-bull.jpg'], badge: 'COMBO', tone: 'blue', featured: false },
   { id: 'eternity', name: 'Gin Eternity Tradicional', category: 'destilados', description: '900 ml · Gin', price: 2499, images: ['eternity.png'], badge: 'GIN', tone: 'mint', featured: false },
-  { id: 'combo-eternity', name: 'Combo Eternity', category: 'combos', description: '1 Gin Eternity 900 ml + 5 Red Bull 250 ml + 5 gelos', redBullUnits: 5, iceUnits: 5, price: 5999, images: ['eternity.png', 'red-bull.jpg'], badge: 'COMBO', tone: 'mint', featured: false },
+  { id: 'combo-eternity', name: 'Combo Eternity com Baly', category: 'combos', description: '1 Gin Eternity 900 ml + 1 garrafa de Baly à escolha + 5 gelos', balyUnits: 1, iceUnits: 5, price: 5999, images: ['eternity.png'], badge: 'COMBO', tone: 'mint', featured: false },
+  { id: 'combo-eternity-red-bull', name: 'Combo Eternity com Red Bull', category: 'combos', description: '1 Gin Eternity 900 ml + 5 Red Bull 250 ml + 5 gelos', redBullUnits: 5, iceUnits: 5, price: 6999, images: ['eternity.png', 'red-bull.jpg'], badge: 'COMBO', tone: 'mint', featured: false },
 ];
 

@@ -39,6 +39,7 @@
 .flavor-choice.selected .flavor-radio-mark .icon { opacity: 1; }
 .flavor-swatch { width: 24px; height: 32px; border-radius: 6px; border: 1px solid #ffffff3d; box-shadow: inset 4px 0 5px #ffffff26, inset -4px 0 6px #0002; flex-shrink: 0; }
 .flavor-original { background: linear-gradient(110deg,#355eae 0 48%,#c3d2dc 49%); }
+.flavor-green-apple { background: #80be48; }
 .flavor-watermelon { background: #df5260; }.flavor-strawberry-peach { background: linear-gradient(145deg,#ed7791,#efb477); }.flavor-tropical { background: #e6c345; }
 .flavor-row-name { flex: 1; min-width: 0; }
 .flavor-row-name strong { display: block; font-size: 11px; line-height: 1.5; }
